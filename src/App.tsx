@@ -1,14 +1,22 @@
 import React from 'react';
-import Home from './paginas/home/Home';
 import './App.css';
+import Home from './paginas/home/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './paginas/login/Login';
 
 
 
 function App() {
   return (
-   <Home  title="Componente Home"
-          description="Este é um componente Home que recebe props."/>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/home' element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
-
 export default App;
