@@ -1,31 +1,47 @@
-import React from 'react'
+import { ReactNode, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
-  return (
+import { AuthContext } from '../../contexts/AuthContext'
 
-    <>
-      <div className='w-full bg-indigo-900 text-white flex justify-center py-4'>
-        <div className='container flex justify-between text-lg'>
-          <div className='text-2x1 front-bold uppercase'>Blog pessoal</div>
-          <div className='flex gap-4'>
-            <div className='houver:underline'>Postagens</div>
-            <div className='houver:underline'>Temas</div>
-            <div className='houver:underline'>Cadastrar tema</div>
-            <div className='houver:underline'>Perfil</div>
-            <div className='houver:underline'>Sair</div>
+function Navbar() {
 
-          </div>
+    const navigate = useNavigate()
+    const { usuario, handleLogout } = useContext(AuthContext)
 
-        </div>
+    function logout() {
+        handleLogout()
+        alert('Usuário deslogado com sucesso')
+        navigate('/login')
+    }
 
-      </div>
+    let component: ReactNode
 
+    if (usuario.token !== "") {
 
+        component = (
+            <div className='w-full bg-indigo-900 text-white flex justify-center py-4'>
+                <div className=" container flex justify-between text-lg">
+                    <Link to='/home' className='text-2xl font-bold'>Blog Pessoal</Link>
 
+                    <div className='flex gap-4'>
+                        <Link to='/postagens' className='hover:underline'>Postagens</Link>
+                        <Link to='/temas' className='hover:underline'>Temas</Link>
+                        <Link to='/cadastroTema' className='hover:underline'>Cadastrar Tema</Link>
+                        <Link to='/perfil' className='hover:underline'>Perfil</Link>
+                        <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
+                    </div>
 
-    </>
+                </div>
+            </div>
+        )
 
-  )
+    }
+
+    return (
+        <>
+            { component }
+        </>
+    )
 }
 
 export default Navbar

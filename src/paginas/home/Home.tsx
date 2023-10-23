@@ -1,26 +1,40 @@
-import { useNavigate, Link } from 'react-router-dom'
-import React from 'react'
+import ListaPostagens from "../../components/postagens/listaPostagens/ListaPostagens"
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem'
 
+function Home() {
 
-
-const Home = () => {
-    let navigate = useNavigate()
     return (
+        <>
+            <div className="bg-indigo-900 flex justify-center">
+                <div className='container grid grid-cols-2 text-white'>
+                    <div className="flex flex-col gap-4 items-center justify-center py-4">
+                        <h2 className='text-5xl font-bold'>
+                            Seja Bem Vinde!
+                        </h2>
+                        <p className='text-xl'>
+                            Expresse aqui seus pensamentos e opniões
+                        </p>
 
-        <div>
-            <h2 className="text-slate-900 text-5x1  m-4">Home</h2>
-            <div>
+                        <div className="flex justify-around gap-4">
+                            <div className="flex justify-around gap-4">
+                                <ModalPostagem />
+                            </div>
+                        </div>
+                    </div>
 
-                <button type='submit'
-                className='houver:underline mx-4'
-                onClick={() => { navigate('/login') }}>
-                    Login useNavigate
-                </button>
-                <Link to='/login' className='houver:underline mx-4'>Login por Link</Link>
+                    <div className="flex justify-center ">
+                        <img
+                            src="https://i.imgur.com/fyfri1v.png"
+                            alt="Imagem Página Home"
+                            className='w-2/3'
+                        />
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <ListaPostagens />
+        </>
     )
 }
-
 
 export default Home
